@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/" exact component={SignIn} />
+        {/* <Route path="/" exact component={SignIn} /> */}
         <Main>
           <Route exact path="/dashboard" component={Home} />
           <Route exact path="/incoming" component={Incoming} />
@@ -41,6 +41,7 @@ function App() {
           <Route exact path="/outcoming" component={Outcoming} />
           <Route exact path="/mail" component={Mail} />
           <Route exact path="/ocr" component={OcrResult} />
+          <Redirect from="/" to="/dashboard" />
         </Main>
       </Switch>
     </div>
