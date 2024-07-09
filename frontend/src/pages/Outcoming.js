@@ -62,9 +62,29 @@ const call_history_columns = [
     })
   },
   {
+    title: "Law Firm Name",
+    dataIndex: "law_firm_name",
+    key: "law_firm_name",
+    render: (_, record) => (
+      <Space size="middle">
+        <div style={{ whiteSpace: 'pre-wrap' }}>{record.law_firm_name}</div>
+      </Space>
+    ),
+  },
+  {
     title: "Phone Number",
     dataIndex: "phone_number",
     key: "phone_number",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+    render: (_, record) => (
+      <Space size="middle">
+        <div style={{ whiteSpace: 'wrap', width: '100px' }}>{record.email}</div>
+      </Space>
+    ),
   },
   {
     title: "Call Length",
@@ -152,6 +172,7 @@ function Outcoming() {
                 rowKey={(record) => record.c_id}
                 loading={!callLogs?.length}
                 pagination={false}
+                bordered
               />
             </Card>
           </Col>

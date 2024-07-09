@@ -28,7 +28,7 @@ exports.create = (req, res) => {
 // Retrieve all Users from the database (with condition).
 exports.findAll = (req, res) => {
   const user_id = req.query.user_id;
-
+  
   Script.getAll(user_id, (err, data) => {
     if (err)
       res.status(500).send({
@@ -64,9 +64,7 @@ exports.update = (req, res) => {
       message: "Content can not be empty!"
     });
   }
-
-  console.log(req.body);
-
+console.log({object: req.body})
   Script.updateById(
     req.params.id,
     new Script(req.body),
@@ -74,14 +72,16 @@ exports.update = (req, res) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Script with id ${req.params.id}.`
+            message: `Not found Script with id ${req.params.id}.`,
+            success: false
           });
         } else {
           res.status(500).send({
-            message: "Error updating Script with id " + req.params.id
+            message: "Error updating Script with id " + req.params.id,
+            success: false
           });
         }
-      } else res.send(data);
+      } else res.send({message: data, success: true});
     }
   );
 };
@@ -91,15 +91,17 @@ exports.delete = (req, res) => {
   Script.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Script with id ${req.params.id}.`
+        res.send({
+          message: `Not found Script with id ${req.params.id}.`,
+          success: false
         });
       } else {
-        res.status(500).send({
-          message: "Could not delete Script with id " + req.params.id
+        res.send({
+          message: "Could not delete Script with id " + req.params.id,
+          success: false
         });
       }
-    } else res.send({ message: `Script was deleted successfully!` });
+    } else res.send({ message: `Script was deleted successfully!`, success: true });
   });
 };
 
@@ -115,7 +117,7 @@ exports.deleteAll = (req, res) => {
 };
 
 // Create and Save a new Script (alternative method to register)
-exports.upsert = (req, res) => {
+exports.insert = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
@@ -128,11 +130,11 @@ exports.upsert = (req, res) => {
   // Create a Script
   const script = {
     user_id: req.body.user_id,
+    title: req.body.title,
     script: req.body.script,
   };
-
   // Save Script in the database with upsert
-  Script.upsert(script, (err, data) => {
+  Script.insert(script, (err, data) => {
     if (err) {
       res.send({
         message: err.message || "Some error occurred while creating the Script.",

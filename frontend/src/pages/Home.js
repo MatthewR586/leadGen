@@ -509,12 +509,12 @@ function Home() {
         <Row>
           <Col span={24}>
             <Card title="Leads">
-              <Row justify="space-between">
+              <Row justify="space-between" style={{marginBottom: '10px'}}>
                 <Col md={6}>
                   <Button type="primary" onClick={() => {
                     setNewLeadModalOpen(true)
                     setModalTitle("Add New Lead")
-                  }}><PlusOutlined /> Add New</Button>
+                  }}><PlusOutlined />Add New</Button>
                 </Col>
                 <Col md={6}>
                   <Input prefix={<SearchOutlined />} size="small" placeholder="Search" value={searchLawFirm} onChange={(e) => handleSearchLawFirmChange(e)} />
@@ -527,6 +527,7 @@ function Home() {
                 rowKey={(record) => record.id}
                 loading={!lawFirmData.length || lawFirmDataLoading}
                 pagination={false}
+                bordered
               />
             </Card>
           </Col>

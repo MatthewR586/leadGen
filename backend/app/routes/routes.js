@@ -22,7 +22,9 @@ module.exports = app => {
 
   // script
   router.get('/script', scriptHistory.findAll)
-  router.post('/script', scriptHistory.upsert)
+  router.post('/script', scriptHistory.insert)
+  router.put('/script/:id', scriptHistory.update)
+  router.delete('/script/:id', scriptHistory.delete)
 
   app.use('/api', router);
 };

@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const Script = function(script) {
   this.user_id = script.user_id;
   this.script = script.script;
+  this.title = script.title;
 };
 
 Script.create = (newScript, result) => {
@@ -21,19 +22,35 @@ Script.create = (newScript, result) => {
 Script.upsert = (newScript, result) => {
   console.log(newScript)
   sql.query(
-    `INSERT INTO tbl_script (user_id, script) 
-     VALUES (?, ?)
-     ON DUPLICATE KEY UPDATE 
-     script = VALUES(script)`,
-    [newScript.user_id, newScript.script], 
+    `INSERT INTO tbl_script (user_id, title, script) 
+     VALUES (?, ?, ?)`,
+    [newScript.user_id, newScript.title, newScript.script], 
     (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
         return;
       }
+  
+      result(null, { id: res.insertId, ...newScript });
+    }
+  );
+};
 
-      result(null, { id: res.insertId || newScript.id, ...newScript });
+Script.insert = (newScript, result) => {
+  console.log({newScript})
+  sql.query(
+    `INSERT INTO tbl_script (user_id, title, script) 
+     VALUES (?, ?, ?)`,
+    [newScript.user_id, newScript.title, newScript.script], 
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      result(null, { id: res.insertId, ...newScript });
     }
   );
 };
@@ -96,8 +113,8 @@ Script.getAll = (user_id, result) => {
 
 Script.updateById = (id, script, result) => {
   sql.query(
-    "UPDATE tbl_script SET name = ?, email = ? WHERE id = ?",
-    [script.name, script.email, id],
+    "UPDATE tbl_script SET script = ?, title = ? WHERE id = ?",
+    [script.script, script.title, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
