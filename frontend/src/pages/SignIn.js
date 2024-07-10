@@ -45,30 +45,6 @@ const SignIn = () => {
   const [sendButtonLoading, setSendButtonLoading] = useState(false);
   const history = useHistory();
 
-  const handleSendOTP = () => {
-    setSendOTPLoading(true);
-    axios.post(`${backend_api}/verify_otp`, { token: token, code: OTPCode }).then(response => {
-      console.log(response)
-      if (response.status == 200) {
-        if (response.data.success == true) {
-          history.push('/dashboard')
-        } else {
-          notification.error({ message: 'Error', description: 'Failed to Login' });
-        }
-      } else {
-        notification.error({ message: 'Error', description: 'Failed to send OTP' });
-      }
-      setSendOTPLoading(false);
-    }).catch(error => {
-      console.log(error);
-      notification.error({ message: 'Error', description: 'Failed to send OTP' });
-      setSendOTPLoading(false);
-    })
-  }
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  }
 
   const handleSignIn = () => {
     if (email == '') {
@@ -91,6 +67,7 @@ const SignIn = () => {
       console.log(error)
       notification.error({ message: 'Error', description: 'Server Error' });
     }).finally(() => {
+      setSendButtonLoading(false)
     })
   }
 
@@ -113,9 +90,7 @@ const SignIn = () => {
               md={{ span: 12 }}
             >
               <Title className="mb-15">Sign In</Title>
-              <Title className="font-regular text-muted" level={5}>
-                Enter your email addresss to send OTP
-              </Title>
+           
               <Form
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}

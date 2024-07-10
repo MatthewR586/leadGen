@@ -346,7 +346,7 @@ function Home() {
   const law_firm_columns = [
 
     {
-      title: "Law firm name",
+      title: "Company Name",
       dataIndex: "law_firm_name",
       key: "law_firm_name",
       render(data) {
@@ -539,9 +539,9 @@ function Home() {
                 className="row-col">
                 <Row style={{ marginBottom: '20px' }} gutter={50}>
                   <Col span={12}>
-                    <p>Law Firm Name</p>
+                    <p>Company Name</p>
                     <Input
-                      placeholder="Law Firm Name"
+                      placeholder="Company Name"
                       onChange={(e) => { setLawFirmName(e.target.value) }}
                       value={law_firm_name}
                       defaultValue={law_firm_name}

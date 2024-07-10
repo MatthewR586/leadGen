@@ -62,7 +62,7 @@ const call_history_columns = [
     })
   },
   {
-    title: "Law Firm Name",
+    title: "Company Name",
     dataIndex: "law_firm_name",
     key: "law_firm_name",
     render: (_, record) => (
