@@ -170,9 +170,10 @@ function Outcoming() {
                 columns={call_history_columns}
                 dataSource={callLogs}
                 rowKey={(record) => record.c_id}
-                loading={!callLogs?.length}
+                loading={loading}
                 pagination={false}
                 bordered
+                size="small"
               />
             </Card>
           </Col>

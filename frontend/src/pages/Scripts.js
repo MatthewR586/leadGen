@@ -718,6 +718,7 @@ function Scripts() {
                 loading={isLoading}
                 pagination={false}
                 bordered
+                size="small"
               />
             </Card>
           </Col>

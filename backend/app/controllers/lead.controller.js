@@ -21,7 +21,8 @@ exports.create = (req, res) => {
     person_linkedin_url: req.body.person_linkedin_url,
     company_linkedin_url: req.body.company_linkedin_url,
     modifier: req.body.modifier,
-    user_id: req.body.user_id
+    user_id: req.body.user_id,
+    script_id: req.body.script_id,
   });
 
   // Save User in the database

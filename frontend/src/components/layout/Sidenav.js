@@ -15,7 +15,7 @@ import { Menu, Button } from "antd";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { PhoneOutlined } from "@ant-design/icons";
 import { BsTelephoneOutbound, BsTelephoneInbound  } from "react-icons/bs";
-import { RiMailSettingsLine, RiLogoutBoxLine } from "react-icons/ri";
+import { RiMailSettingsLine, RiLogoutBoxLine, RiTimeLine } from "react-icons/ri";
 import { SiAmazondocumentdb } from "react-icons/si";
 
 import { PiClipboardTextThin } from "react-icons/pi";
@@ -231,19 +231,19 @@ function Sidenav({ color }) {
             <span className="label">Scripts</span>
           </NavLink>
         </Menu.Item>
-        {/* <Menu.Item key="5">
-          <NavLink to="/mail">
+        <Menu.Item key="5">
+          <NavLink to="/schedule">
             <span
               className="icon"
               style={{
-                background: page === "mail" ? color : "",
+                background: page === "schedule" ? color : "",
               }}
             >
-              <RiMailSettingsLine />
+              <RiTimeLine />
             </span>
-            <span className="label">Mail</span>
+            <span className="label">Schedule</span>
           </NavLink>
-        </Menu.Item> */}
+        </Menu.Item>
         {/* <Menu.Item key="6">
           <NavLink to="/ocr">
             <span

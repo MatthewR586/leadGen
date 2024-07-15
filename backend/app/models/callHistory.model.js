@@ -6,6 +6,7 @@ const CallHistory = function (callHistory) {
     this.summary = callHistory.summary;
     this.length = callHistory.length;
     this.status = callHistory.status;
+    this.created_at = callHistory.created_at;
 };
 
 CallHistory.create = (newCallHistory, result) => {
@@ -51,7 +52,8 @@ CallHistory.getAll = (userId, result) => {
                 JOIN 
                     tbl_lead l ON ch.lead_id = l.id
                 WHERE 
-                    l.user_id = ?;`
+                    l.user_id = ?
+                ORDER BY created_at DESC;`
 
     sql.query(query, [userId], (err, res) => {
         if (err) {

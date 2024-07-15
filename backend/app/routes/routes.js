@@ -5,6 +5,7 @@ module.exports = app => {
   const leads = require("../controllers/lead.controller.js");
   const callHistory = require("../controllers/call.contoller.js");
   const scriptHistory = require("../controllers/script.controller.js");
+  const schedule = require("../controllers/schedule.controller.js")
   var router = require("express").Router();
 
   // user management
@@ -26,5 +27,10 @@ module.exports = app => {
   router.put('/script/:id', scriptHistory.update)
   router.delete('/script/:id', scriptHistory.delete)
 
+  //schedule
+  router.get('/schedule', schedule.findAll)
+  router.get("/schedule_detail", schedule.getDetail)
+  router.post('/schedule', schedule.create)
+  router.delete("/schedule", schedule.delete)
   app.use('/api', router);
 };

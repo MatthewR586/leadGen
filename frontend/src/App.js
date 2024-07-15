@@ -23,6 +23,7 @@ import Scripts from "./pages/Scripts";
 import Outcoming from "./pages/Outcoming";
 import OcrResult from "./pages/OcrResult";
 import { useEffect } from "react";
+import Schedule from "./pages/Schedule";
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
           <Route exact path="/scripts" component={Scripts} />
           <Route exact path="/outcoming" component={Outcoming} />
           <Route exact path="/mail" component={Mail} />
-          <Route exact path="/ocr" component={OcrResult} />
+          <Route exact path="/schedule" component={Schedule} />
           {/* <Redirect from="/" to="/dashboard" /> */}
         </Main>
       </Switch>

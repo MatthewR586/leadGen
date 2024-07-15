@@ -13,9 +13,11 @@ const Lead = function(lead) {
   this.company_linkedin_url = lead.company_linkedin_url;
   this.modifier = lead.modifier;
   this.user_id = lead.user_id;
+  this.script_id = lead.script_id;
 };
 
 Lead.create = (newLead, result) => {
+  console.log({newLead})
   sql.query("INSERT INTO tbl_lead SET ?", newLead, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -67,9 +69,10 @@ Lead.getAll = (leadId, result) => {
 };
 
 Lead.updateById = (id, lead, result) => {
+  console.log({lead})
   sql.query(
-    "UPDATE tbl_lead SET law_firm_name = ?, phone_number = ?, email = ?, person_name = ?, person_title = ?, site = ?, company_address = ?, person_linkedin_url = ?, company_linkedin_url = ?, modifier = ?, user_id = ? WHERE id = ?",
-    [lead.law_firm_name, lead.phone_number, lead.email, lead.person_name, lead.person_title, lead.site, lead.company_address, lead.person_linkedin_url, lead.company_linkedin_url, lead.modifier,lead.user_id, id],
+    "UPDATE tbl_lead SET law_firm_name = ?, phone_number = ?, email = ?, person_name = ?, person_title = ?, site = ?, company_address = ?, person_linkedin_url = ?, company_linkedin_url = ?, modifier = ?, user_id = ?, script_id = ? WHERE id = ?",
+    [lead.law_firm_name, lead.phone_number, lead.email, lead.person_name, lead.person_title, lead.site, lead.company_address, lead.person_linkedin_url, lead.company_linkedin_url, lead.modifier,lead.user_id, lead.script_id, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
