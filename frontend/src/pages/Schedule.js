@@ -453,6 +453,17 @@ function Schedule() {
       width: "100px",
     },
     {
+      title: "Schedule Time",
+      dataIndex: "date",
+      key: "date",
+      render(data) {
+        return <div style={{ whiteSpace: "pre-wrap" }}>{data.substring(0, 16)}</div>;
+      },
+      textWrap: "word-break",
+      ellipsis: true,
+      width: "100px",
+    },
+    {
       title: "View",
       render(_, record) {
         return (
@@ -784,9 +795,9 @@ function Schedule() {
                     <Col span={24}>
                       <p>Date</p>
                       <DatePicker
-                        showTime
+                        showTime={{ format: 'HH:mm' }}
                         onChange={(_, dateString) => {
-                          setScheduleTime(dateString);
+                          setScheduleTime(`${dateString}:00`);
                         }}
                         value={
                           modalTitle == "Add New Schedule"
@@ -794,6 +805,7 @@ function Schedule() {
                             : dayjs(scheduleTime)
                         }
                         allowClear={false}
+                        format="YYYY-MM-DD HH:mm"
                       />
                     </Col>
                   </Row>

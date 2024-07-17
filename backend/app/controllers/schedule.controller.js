@@ -191,7 +191,7 @@ const updateSchedule = (scheduleListDB) => {
       // Data
       const data = {
         phone_number: "+1" + scheduleDB.phone_number,
-        from: null,
+        from: "+17277611053",
         task: `${scheduleDB.script} \n replace [Law Firm Name] to ${scheduleDB.law_firm_name}, [Contact Name] to ${scheduleDB.person_name}, [your website URL] to ${scheduleDB.site}, [Main Problem] to ${scheduleDB.modifier}`,
         model: "enhanced",
         language: "en",
@@ -201,7 +201,7 @@ const updateSchedule = (scheduleListDB) => {
         max_duration: 12,
         answered_by_enabled: false,
         wait_for_greeting: false,
-        record: false,
+        record: true,
         amd: false,
         interruption_threshold: 100,
         voicemail_message: null,
@@ -212,7 +212,7 @@ const updateSchedule = (scheduleListDB) => {
         start_time: null,
         request_data: {},
         tools: [],
-        webhook: null,
+        webhook: "https://caller.smoomer.ai/api/blandhook",
         calendly: {},
       };
 

@@ -38,51 +38,51 @@ app.listen(PORT, () => {
 
 
 let oldBlandResponse = -1;
-cron.schedule('*/5 * * * * *', () => {
-  const req = https.request(options, (res) => {
-    let data = '';
+// cron.schedule('*/5 * * * * *', () => {
+//   const req = https.request(options, (res) => {
+//     let data = '';
 
-    res.on('data', (chunk) => {
-      data += chunk;
-    });
+//     res.on('data', (chunk) => {
+//       data += chunk;
+//     });
 
-    res.on('end', async () => {
-      blandResponse = JSON.parse(data);
-      console.log(blandResponse.calls)
-      if (blandResponse.count == oldBlandResponse ) return
-      oldBlandResponse = blandResponse.count
-      // console.log(Object.keys(blandRespons))
-      // console.log(blandRespons.calls.length)
-      blandResponse.calls.forEach(item => {
-        findLeadIdByPhoneNumber(item.to, (err, result) => {
-          if (result.length == 0) return
-          removeAll((err, removeResult) => {
-            if (err == null) {
-              // console.log(err, result)
-              create({
-                lead_id: result[0].id,
-                call_id: item.call_id,
-                summary: item.summary,
-                length: Math.ceil(item.call_length * 60),
-                status: item.status,
-                created_at: item.created_at
-              }, (err, result) => {
-                // console.log(err, result)
-              })
-            }
-          })
-        });
-      });
-    });
-  });
+//     res.on('end', async () => {
+//       blandResponse = JSON.parse(data);
+//       console.log(blandResponse.calls)
+//       if (blandResponse.count == oldBlandResponse ) return
+//       oldBlandResponse = blandResponse.count
+//       // console.log(Object.keys(blandRespons))
+//       // console.log(blandRespons.calls.length)
+//       blandResponse.calls.forEach(item => {
+//         findLeadIdByPhoneNumber(item.to, (err, result) => {
+//           if (result.length == 0) return
+//           removeAll((err, removeResult) => {
+//             if (err == null) {
+//               // console.log(err, result)
+//               create({
+//                 lead_id: result[0].id,
+//                 call_id: item.call_id,
+//                 summary: item.summary,
+//                 length: Math.ceil(item.call_length * 60),
+//                 status: item.status,
+//                 created_at: item.created_at
+//               }, (err, result) => {
+//                 // console.log(err, result)
+//               })
+//             }
+//           })
+//         });
+//       });
+//     });
+//   });
 
-  req.on('error', (error) => {
-    console.error(error);
-  });
+//   req.on('error', (error) => {
+//     console.error(error);
+//   });
 
-  req.end();
+//   req.end();
 
-});
+// });
 
 // cron.schedule('0 9 * * *', () => {
 //   // cron.schedule('0 9 * * *', () => {

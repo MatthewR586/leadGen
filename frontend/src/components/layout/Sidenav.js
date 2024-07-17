@@ -180,16 +180,16 @@ function Sidenav({ color }) {
       <hr />
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
-          <NavLink to="/dashboard">
+          <NavLink to="/leads">
             <span
               className="icon"
               style={{
-                background: page === "dashboard" ? color : "",
+                background: page === "leads" ? color : "",
               }}
             >
               {dashboard}
             </span>
-            <span className="label">Dashboard</span>
+            <span className="label">Leads</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="2">

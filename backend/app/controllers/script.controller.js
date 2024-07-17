@@ -64,7 +64,6 @@ exports.update = (req, res) => {
       message: "Content can not be empty!"
     });
   }
-console.log({object: req.body})
   Script.updateById(
     req.params.id,
     new Script(req.body),
@@ -132,6 +131,7 @@ exports.insert = (req, res) => {
     user_id: req.body.user_id,
     title: req.body.title,
     script: req.body.script,
+    sms: req.body.sms
   };
   // Save Script in the database with upsert
   Script.insert(script, (err, data) => {

@@ -418,6 +418,7 @@ function Scripts() {
   const [modalTitle, setModalTitle] = useState("");
   const [deleteScriptModalOpen, setDeleteScriptModalOpen] = useState("");
   const [currentSelectedScript, setCurrentSelectedScript] = useState([]);
+  const [currentSMS, setCurrentSMS] = useState("");
   useEffect(() => {
     if (user == null) {
       history.push("/");
@@ -467,6 +468,7 @@ function Scripts() {
   const clearScriptForm = () => {
     setScriptTitle("");
     setCurrentScript("");
+    setCurrentSMS("");
   };
 
   const handleCancel = () => {
@@ -476,11 +478,18 @@ function Scripts() {
   };
 
   const handleSaveNewScript = () => {
-    console.log({user})
+    if(currentSMS == '' || currentScript == '') {
+      notification.info({
+        message: "Info",
+        description: "SMS or Script field is missing."
+      })
+      return;
+    }
     const request = {
       title: scriptTitle,
       script: currentScript,
       user_id: user.id,
+      sms: currentSMS
     };
     setIsLoading(true);
     if (modalTitle == "Add New Script") {
@@ -576,6 +585,7 @@ function Scripts() {
     setModalTitle("Detail Script");
     setCurrentSelectedScript(script);
     setScriptTitle(script.title);
+    setCurrentSMS(script.sms);
     setCurrentScript(script.script);
     setNewScriptModalOpen(true);
   };
@@ -749,7 +759,7 @@ function Scripts() {
                  
                 </Row>
                 
-                <Row>
+                <Row style={{ marginBottom: "20px" }}>
                   <Col span={24}>
                     <p>Script</p>
                     <TextArea
@@ -759,7 +769,22 @@ function Scripts() {
                       }}
                       value={currentScript}
                       defaultValue={currentScript}
-                      rows={20}
+                      rows={15}
+                    />
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col span={24}>
+                    <p>SMS</p>
+                    <TextArea
+                      placeholder="Hello I hope that mail found you well."
+                      onChange={(e) => {
+                        setCurrentSMS(e.target.value);
+                      }}
+                      value={currentSMS}
+                      defaultValue={currentSMS}
+                      rows={5}
                     />
                   </Col>
                 </Row>

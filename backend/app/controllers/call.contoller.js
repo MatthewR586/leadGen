@@ -128,3 +128,8 @@ exports.deleteAll = (req, res) => {
     else res.send({ message: `All Users were deleted successfully!` });
   });
 };
+
+// webhook from bland.
+exports.blandHook = (req, res) => {
+  console.log(req.body)
+};

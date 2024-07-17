@@ -56,7 +56,7 @@ const SignIn = () => {
       if (response.status == 200) {
         if (response.data.success == true) {
           dispatch(login(response.data.message))
-          history.push('/dashboard')
+          history.push('/leads')
         } else {
           notification.error({ message: 'Error', description: response.data.message });
         }

@@ -5,6 +5,7 @@ const Script = function(script) {
   this.user_id = script.user_id;
   this.script = script.script;
   this.title = script.title;
+  this.sms = script.sms;
 };
 
 Script.create = (newScript, result) => {
@@ -40,9 +41,9 @@ Script.upsert = (newScript, result) => {
 Script.insert = (newScript, result) => {
   console.log({newScript})
   sql.query(
-    `INSERT INTO tbl_script (user_id, title, script) 
-     VALUES (?, ?, ?)`,
-    [newScript.user_id, newScript.title, newScript.script], 
+    `INSERT INTO tbl_script (user_id, title, script, sms) 
+     VALUES (?, ?, ?, ?)`,
+    [newScript.user_id, newScript.title, newScript.script, newScript.sms], 
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -113,8 +114,8 @@ Script.getAll = (user_id, result) => {
 
 Script.updateById = (id, script, result) => {
   sql.query(
-    "UPDATE tbl_script SET script = ?, title = ? WHERE id = ?",
-    [script.script, script.title, id],
+    "UPDATE tbl_script SET script = ?, title = ?, sms = ? WHERE id = ?",
+    [script.script, script.title, script.sms, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

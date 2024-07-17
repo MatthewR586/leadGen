@@ -33,4 +33,7 @@ module.exports = app => {
   router.post('/schedule', schedule.create)
   router.delete("/schedule", schedule.delete)
   app.use('/api', router);
+
+  //bland webhook
+  router.post("/blandhook", callHistory.blandHook)
 };

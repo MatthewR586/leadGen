@@ -408,7 +408,7 @@ function Home() {
     // Data
     const data = {
       phone_number: "+1" + record.PhoneNumber,
-      from: null,
+      from: "+17275949328",
       task: task,
       model: "enhanced",
       language: "en",
@@ -562,18 +562,18 @@ function Home() {
       ellipsis: true,
       width: "50px",
     },
-    {
-      title: "Call",
-      render(_, record) {
-        return (
-          <div>
-            <Button type="primary" onClick={(e) => handleCallButton(record)}>
-              Call
-            </Button>
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: "Call",
+    //   render(_, record) {
+    //     return (
+    //       <div>
+    //         <Button type="primary" onClick={(e) => handleCallButton(record)}>
+    //           Call
+    //         </Button>
+    //       </div>
+    //     );
+    //   },
+    // },
 
     {
       title: "View",
